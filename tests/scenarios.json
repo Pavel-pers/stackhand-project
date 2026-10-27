@@ -91,7 +91,7 @@
     ],
     "node_isolate": [
       {
-        "path": "main/node-isolate/local/handle-choice/14-chain-after-source-unavailable",
+        "path": "main/node-isolate/local/handle-choice/14-chain-after-stale-source",
         "step": 2
       },
       {
@@ -347,7 +347,7 @@
   {
     "code": "MR-6",
     "group": "Main-Run 6",
-    "description": "Доступ к серверу потерялся — несколько попыток, затем ответ пользователю с возможными причинами через оркестратор",
+    "description": "Доступ к серверу потерялся — несколько попыток (в системе — 2 с паузой 5 с внутри ручки), затем ответ пользователю с возможными причинами через оркестратор",
     "e2e": [
       "main/e2e/access-lost/01-ssh-refused"
     ],
@@ -632,7 +632,7 @@
   {
     "code": "X-LIM",
     "group": "Вне плана",
-    "description": "Лимиты тулз [AR-32]: поведение модели при отказе системы на вызов сверх лимита [Q60]",
+    "description": "Лимиты тулз [AR-32]: после отказа системы на вызов сверх лимита модель завершает работу разрешённой тулзой, а не повторяет вызов [AR-43]",
     "e2e": [],
     "node_isolate": [
       {
@@ -718,13 +718,20 @@
   {
     "code": "SYS",
     "group": "Системные тесты",
-    "description": "Не метрики модели — вне eval-сета (удаление сервера [AR-21], закрытие чата по лимиту [UC-28], сбой инфраструктуры системы)",
+    "description": "Поведение системы, не модели — вне долей eval-сета: удаление сервера [AR-21], закрытие чата (третий ответ, 10 вызовов сверх лимита, третья карточка и deny) [UC-35], «Остановить» [UC-34], системные ошибки [AR-46]",
     "e2e": [],
     "node_isolate": [],
     "system": [
       "system/delete/01-delete-button",
       "system/chat-limit/01-third-answer-closes-chat",
-      "system/infra-failure/01-no-model-no-memory"
+      "system/chat-limit/02-ten-over-limit-calls",
+      "system/chat-limit/03-curator-last-card-and-deny",
+      "system/stop/01-stop-button",
+      "system/progress/01-status-messages",
+      "system/infra-failure/01-engine-or-storage-down",
+      "system/infra-failure/02-handle-exception-vs-unreachable",
+      "system/infra-failure/03-context-window-overflow",
+      "system/infra-failure/04-three-invalid-calls"
     ]
   }
 ]

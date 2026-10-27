@@ -95,7 +95,7 @@
 {"code": "IN-2b", "path": "main/node-isolate/local/handle-choice/11-fresh-backup-record-path", "title": "local/handle-choice/11 — свежесть бэкапа: путь из записи о сервере, а не из привычки", "kind": "node-isolate", "step": 9}
 {"code": "MR-1c", "path": "main/node-isolate/local/handle-choice/12-best-backup-window", "title": "local/handle-choice/12 — «когда лучше делать бэкапы»: составной запрос", "kind": "node-isolate", "step": 2}
 {"code": "MR-7a", "path": "main/node-isolate/local/handle-choice/13-fact-check-users-now", "title": "local/handle-choice/13 — «кто сейчас на сервере»: не из описания", "kind": "node-isolate", "step": 2}
-{"code": "MR-1d", "path": "main/node-isolate/local/handle-choice/14-chain-after-source-unavailable", "title": "local/handle-choice/14 — цепочка: после ошибки источника агент ищет другой путь", "kind": "node-isolate", "step": 2}
+{"code": "MR-1d", "path": "main/node-isolate/local/handle-choice/14-chain-after-stale-source", "title": "local/handle-choice/14 — цепочка: после предупреждения «источник не обновлялся» агент дочитывает ночь другим путём", "kind": "node-isolate", "step": 2}
 {"code": "MR-1e", "path": "main/node-isolate/local/answer-from-return/01-disk-usage", "title": "local/answer-from-return/01 — ответ оркестратору по сводке: тома", "kind": "node-isolate", "step": 3}
 {"code": "MR-1a", "path": "main/node-isolate/local/answer-from-return/02-cpu-history", "title": "local/answer-from-return/02 — ответ по профилю нагрузки за сутки", "kind": "node-isolate", "step": 3}
 {"code": "MR-1e", "path": "main/node-isolate/local/answer-from-return/03-backup-time", "title": "local/answer-from-return/03 — ответ по заданиям планировщика: время бэкапа", "kind": "node-isolate", "step": 3}
@@ -129,9 +129,16 @@
 {"code": "MR-5a", "path": "main/e2e/data-mismatch/01-no-data-for-period", "title": "main/e2e/data-mismatch/01 — нет данных за запрошенный период", "kind": "e2e", "step": null}
 {"code": "MR-5b", "path": "main/e2e/data-mismatch/02-metric-not-logged", "title": "main/e2e/data-mismatch/02 — на сервере не логируется запрошенная метрика (GPU)", "kind": "e2e", "step": null}
 {"code": "MR-6", "path": "main/e2e/access-lost/01-ssh-refused", "title": "main/e2e/access-lost/01 — сервер перестал принимать ключ / не отвечает", "kind": "e2e", "step": null}
-{"code": "MR-6b", "path": "main/e2e/access-lost/02-log-access-lost", "title": "main/e2e/access-lost/02 — ручка упала: пропал доступ к журналу", "kind": "e2e", "step": null}
+{"code": "MR-6b", "path": "main/e2e/access-lost/02-log-access-lost", "title": "main/e2e/access-lost/02 — ручка упала: пропал доступ к собранным данным", "kind": "e2e", "step": null}
 {"code": "MR-8b", "path": "main/e2e/what-you-can/01-local-side", "title": "main/e2e/what-you-can/01 — «что можно узнать про сервер 1С?»: знания агента о своих ручках", "kind": "e2e", "step": null}
 {"code": "X-MULTI", "path": "main/e2e/multi-server/01-two-servers", "title": "main/e2e/multi-server/01 — запрос по двум серверам: последовательные запуски", "kind": "e2e", "step": null}
-{"code": "SYS", "path": "system/delete/01-delete-button", "title": "system/delete/01 — кнопка удаления сервера: вся информация о сервере удаляется", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/delete/01-delete-button", "title": "system/delete/01 — удаление сервера из списка: вся информация о сервере удаляется", "kind": "system", "step": null}
 {"code": "SYS", "path": "system/chat-limit/01-third-answer-closes-chat", "title": "system/chat-limit/01 — третий ответ или отказ закрывает чат", "kind": "system", "step": null}
-{"code": "SYS", "path": "system/infra-failure/01-no-model-no-memory", "title": "system/infra-failure/01 — сбой на стороне системы: нет модели, нет памяти о серверах", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/chat-limit/02-ten-over-limit-calls", "title": "system/chat-limit/02 — десять вызовов сверх лимита подряд закрывают сессию", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/chat-limit/03-curator-last-card-and-deny", "title": "system/chat-limit/03 — добавление сервера: третья карточка последняя, deny закрывает чат", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/stop/01-stop-button", "title": "system/stop/01 — кнопка «Остановить»: прогон прерван, чат закрыт", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/progress/01-status-messages", "title": "system/progress/01 — статусные сообщения по ходу прогона; закрытая вкладка не отменяет прогон", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/infra-failure/01-engine-or-storage-down", "title": "system/infra-failure/01 — сбой движка или хранилища: «Внутренняя ошибка», чат закрыт", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/infra-failure/02-handle-exception-vs-unreachable", "title": "system/infra-failure/02 — исключение в ручке — системная ошибка; недоступный сервер — нет", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/infra-failure/03-context-window-overflow", "title": "system/infra-failure/03 — промпт не помещается в окно: запрос к модели не отправляется", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/infra-failure/04-three-invalid-calls", "title": "system/infra-failure/04 — три невалидных вызова тулз подряд — системная ошибка", "kind": "system", "step": null}

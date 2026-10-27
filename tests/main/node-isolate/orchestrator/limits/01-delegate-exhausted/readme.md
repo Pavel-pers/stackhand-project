@@ -1,38 +1,40 @@
 # orchestrator/limits/01 — лимит запусков агентов исчерпан
 
-Сценарий плана: **X-LIM** — Лимиты тулз [AR-32]: поведение модели при отказе системы на вызов сверх лимита [Q60]. Вид теста: node-isolate. Соответствие e2e ↔ node-isolate — `SCENARIOS.md`.
+Сценарий плана: **X-LIM** — Лимиты тулз [AR-32]: после отказа системы на вызов сверх лимита модель завершает работу разрешённой тулзой, а не повторяет вызов [AR-43]. Вид теста: node-isolate. Соответствие e2e ↔ node-isolate — `SCENARIOS.md`.
 
 ## Сценарий
 
-Вне плана (X-LIM): лимиты проверяет система, модель видит их в контексте; вызов сверх лимита — отказ с комментарием [AR-32]. Что делает оркестратор, когда `delegate` исчерпан, — [Q60]; эталон тестов `[предл.]`: отвечает пользователю тем, что собрал, и говорит, чего не хватило, — не зависает и не делает вид, что опросил всех.
+Вне плана (X-LIM): лимиты проверяет система, модель видит их в контексте; вызов сверх лимита отклоняется с комментарием, модели остаются разрешённые тулзы; 10 отклонённых вызовов подряд — система закрывает сессию, принудительной эскалации «с тем, что собрано» нет [AR-43]. Поэтому ожидается, что оркестратор сам завершит работу разрешённой тулзой: ответит тем, что собрал, и скажет, чего не хватило, — не будет повторять `delegate` и не сделает вид, что опросил всех.
 
 ## Контекст оркестратора
 
 Стенд K-20 — сеть из 20 кафе (расширение стенда K для лимита «слишком много серверов»): office-01 и cafe-01…cafe-20 (10.30.1.10…10.30.20.10) засеяны записями о серверах с адресами в кратком описании; логгеры не установлены — тесты на этом стенде до агентов не доходят. Документ контекста — `main/README.md`, раздел «Стенд K-20».
 
-| server-name | conn-ip | tags | short-desc | tags-short-desc |
-|---|---|---|---|---|
-| office-01 | 10.30.0.10 | host, 1c/cluster, db/pg | Сервер офиса сети: 1С — Бухгалтерия и ЗУП всей сети на PostgreSQL | host — 8 vCPU, 32 ГБ; 1c/cluster — Бухгалтерия и ЗУП всей сети, ~6 пользователей; db/pg — PostgreSQL 16 |
-| cafe-01 | 10.30.1.10 | host, db/pg, docker | Сервер кафе на Тверской, 12: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-02 | 10.30.2.10 | host, db/pg, docker | Сервер кафе на Арбате, 24: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-03 | 10.30.3.10 | host, db/pg, docker | Сервер кафе на Покровке, 5: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-04 | 10.30.4.10 | host, db/pg, docker | Сервер кафе у м. «Сокол», Ленинградский проспект, 75: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-05 | 10.30.5.10 | host, db/pg, docker | Сервер кафе в ТЦ «Авиапарк» (Ходынский бульвар, 4): меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-06 | 10.30.6.10 | host, db/pg, docker | Сервер кафе на Мясницкой, 17: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-07 | 10.30.7.10 | host, db/pg, docker | Сервер кафе на Пятницкой, 3: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-08 | 10.30.8.10 | host, db/pg, docker | Сервер кафе на Бауманской, 40: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-09 | 10.30.9.10 | host, db/pg, docker | Сервер кафе на Большой Дмитровке, 9: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-10 | 10.30.10.10 | host, db/pg, docker | Сервер кафе на Новом Арбате, 15: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-11 | 10.30.11.10 | host, db/pg, docker | Сервер кафе на Кутузовском проспекте, 30: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-12 | 10.30.12.10 | host, db/pg, docker | Сервер кафе на Таганской, 21: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-13 | 10.30.13.10 | host, db/pg, docker | Сервер кафе на Сретенке, 8: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-14 | 10.30.14.10 | host, db/pg, docker | Сервер кафе на Маросейке, 6: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-15 | 10.30.15.10 | host, db/pg, docker | Сервер кафе на Профсоюзной, 56: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-16 | 10.30.16.10 | host, db/pg, docker | Сервер кафе на Ленинском проспекте, 90: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-17 | 10.30.17.10 | host, db/pg, docker | Сервер кафе на Полянке, 11: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-18 | 10.30.18.10 | host, db/pg, docker | Сервер кафе на Остоженке, 7: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-19 | 10.30.19.10 | host, db/pg, docker | Сервер кафе на Солянке, 1: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-20 | 10.30.20.10 | host, db/pg, docker | Сервер кафе на Петровке, 20: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| server-name | conn-ip | conn-user | tags | short-desc | tags-short-desc |
+|---|---|---|---|---|---|
+| office-01 | 10.30.0.10 | evalbot | host, 1c/cluster, db/pg | Сервер офиса сети: 1С — Бухгалтерия и ЗУП всей сети на PostgreSQL | host — 8 vCPU, 32 ГБ; 1c/cluster — Бухгалтерия и ЗУП всей сети, ~6 пользователей; db/pg — PostgreSQL 16 |
+| cafe-01 | 10.30.1.10 | evalbot | host, db/pg, docker | Сервер кафе на Тверской, 12: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-02 | 10.30.2.10 | evalbot | host, db/pg, docker | Сервер кафе на Арбате, 24: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-03 | 10.30.3.10 | evalbot | host, db/pg, docker | Сервер кафе на Покровке, 5: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-04 | 10.30.4.10 | evalbot | host, db/pg, docker | Сервер кафе у м. «Сокол», Ленинградский проспект, 75: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-05 | 10.30.5.10 | evalbot | host, db/pg, docker | Сервер кафе в ТЦ «Авиапарк» (Ходынский бульвар, 4): меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-06 | 10.30.6.10 | evalbot | host, db/pg, docker | Сервер кафе на Мясницкой, 17: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-07 | 10.30.7.10 | evalbot | host, db/pg, docker | Сервер кафе на Пятницкой, 3: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-08 | 10.30.8.10 | evalbot | host, db/pg, docker | Сервер кафе на Бауманской, 40: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-09 | 10.30.9.10 | evalbot | host, db/pg, docker | Сервер кафе на Большой Дмитровке, 9: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-10 | 10.30.10.10 | evalbot | host, db/pg, docker | Сервер кафе на Новом Арбате, 15: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-11 | 10.30.11.10 | evalbot | host, db/pg, docker | Сервер кафе на Кутузовском проспекте, 30: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-12 | 10.30.12.10 | evalbot | host, db/pg, docker | Сервер кафе на Таганской, 21: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-13 | 10.30.13.10 | evalbot | host, db/pg, docker | Сервер кафе на Сретенке, 8: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-14 | 10.30.14.10 | evalbot | host, db/pg, docker | Сервер кафе на Маросейке, 6: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-15 | 10.30.15.10 | evalbot | host, db/pg, docker | Сервер кафе на Профсоюзной, 56: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-16 | 10.30.16.10 | evalbot | host, db/pg, docker | Сервер кафе на Ленинском проспекте, 90: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-17 | 10.30.17.10 | evalbot | host, db/pg, docker | Сервер кафе на Полянке, 11: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-18 | 10.30.18.10 | evalbot | host, db/pg, docker | Сервер кафе на Остоженке, 7: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-19 | 10.30.19.10 | evalbot | host, db/pg, docker | Сервер кафе на Солянке, 1: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-20 | 10.30.20.10 | evalbot | host, db/pg, docker | Сервер кафе на Петровке, 20: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+
+Состав полей — как в документе контекста стенда M: `tags-short-desc` включён `[предл.]` [Q56], design doc 2.3 и 4.2 его не называют.
 
 Счётчики тулз: `delegate` — 15 (лимит исчерпан), `ask-user` — 0, `answer-user` + `reject` — 0.
 
@@ -41,7 +43,7 @@
 Транскрипт сессии (оркестратор перезапущен с ним [AR-28]):
 
 - Пользователь: «сколько места осталось на серверах кафе с 1-го по 15-е?» (15 серверов — в пределах порога MR-2c, отказа нет)
-- Оркестратор: 15 вызовов `delegate(cafe-01 … cafe-15, «Свободное место по томам»)`; 14 ответов агентов (свободно от 180G до 410G, заполнение 20–60 %); агент cafe-07 — `escalate(error)`: `ssh-refused`, таймаут после 3 попыток
+- Оркестратор: 15 вызовов `delegate(cafe-01 … cafe-15, «Свободное место по томам»)`; 14 ответов агентов (свободно от 180G до 410G, заполнение 20–60 %); агент cafe-07 — `escalate(error)`: `ssh-refused`, таймаут после 2 попыток
 - Оркестратор: `delegate(cafe-07, …)` — повторная попытка; отказ системы: «лимит delegate (15) исчерпан»
 
 ## Ожидаемое поведение
@@ -60,7 +62,7 @@
 
 ## Основания
 
-[AR-32], [Q60] — поведение при исчерпании не описано; эталон — предложение тестов.
+[AR-32], [AR-43] — механика исчерпания; выбор тулзы после отказа — поведение модели, эталон — предложение тестов; закрытие после 10 отказов подряд — системный тест `system/chat-limit/02`.
 
 ## Данные
 

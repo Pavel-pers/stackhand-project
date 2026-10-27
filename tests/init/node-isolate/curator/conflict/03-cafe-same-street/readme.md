@@ -17,17 +17,17 @@
 
 Краткие описания уже добавленных серверов (стенд K, сеть кафе — `init/README.md`, раздел «Стенд K») — вход куратора [UC-15]:
 
-| server-name | conn-ip | tags | short-desc | tags-short-desc |
-|---|---|---|---|---|
-| office-01 | 10.30.0.10 | host, 1c/cluster, db/pg | Сервер офиса сети: 1С — Бухгалтерия и ЗУП всей сети на PostgreSQL | host — 8 vCPU, 32 ГБ; 1c/cluster — Бухгалтерия и ЗУП всей сети, ~6 пользователей; db/pg — PostgreSQL 16 |
-| cafe-01 | 10.30.1.10 | host, db/pg, docker | Сервер кафе на Тверской, 12: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-02 | 10.30.2.10 | host, db/pg, docker | Сервер кафе на Арбате, 24: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-03 | 10.30.3.10 | host, db/pg, docker | Сервер кафе на Покровке, 5: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
-| cafe-04 | 10.30.4.10 | host, db/pg, docker | Сервер кафе у м. «Сокол», Ленинградский проспект, 75: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| server-name | conn-ip | conn-user | tags | short-desc | tags-short-desc |
+|---|---|---|---|---|---|
+| office-01 | 10.30.0.10 | evalbot | host, 1c/cluster, db/pg | Сервер офиса сети: 1С — Бухгалтерия и ЗУП всей сети на PostgreSQL | host — 8 vCPU, 32 ГБ; 1c/cluster — Бухгалтерия и ЗУП всей сети, ~6 пользователей; db/pg — PostgreSQL 16 |
+| cafe-01 | 10.30.1.10 | evalbot | host, db/pg, docker | Сервер кафе на Тверской, 12: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-02 | 10.30.2.10 | evalbot | host, db/pg, docker | Сервер кафе на Арбате, 24: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-03 | 10.30.3.10 | evalbot | host, db/pg, docker | Сервер кафе на Покровке, 5: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
+| cafe-04 | 10.30.4.10 | evalbot | host, db/pg, docker | Сервер кафе у м. «Сокол», Ленинградский проспект, 75: меню, заказы и экран кухни; PostgreSQL и сервисы в Docker | host — мини-ПК N100, 4 ядра, 16 ГБ, SSD 512 ГБ; pg_dump в 03:00; db/pg — PostgreSQL 16, база заказов; docker — menu, orders, kds (экран кухни) |
 
 Серверы кафе собраны из одного образа: теги и роль одинаковые, различает их только адрес в кратком описании. Удалённых серверов нет.
 
-Тулзы куратора [AR-31]: `QA(question)` ≤ 5, `confirmation(short-desc, server-name)` ≤ 3, `deny(reason)` — терминальная; лимиты видит в контексте [AR-32]. Класс rule-based `[предл.]`: `QA` при конфликте → `conflict`, `confirmation` → `consistent`; `deny` класса в v0.2 не имеет [Q50]. Остаток на начало теста: QA 5, confirmation 3, если не сказано иное.
+Тулзы куратора [AR-31]: `QA(question)` ≤ 5; `confirmation(short-desc, server-name)` ≤ 3 — карточка показывает ещё и `tags-short-desc` [UC-32], подтверждаются краткое описание и название [UC-21]; третья карточка — последняя: не подтверждена — добавление прерывается, сервер не добавляется; `deny(reason)` — терминальная: отказ пользователю, чат закрывается, сервер не добавляется; после 5 QA — только confirmation и deny [AR-43], [UC-35]. Лимиты куратор видит в контексте [AR-32]. Класс rule-based `[предл.]`: `QA` при конфликте → `conflict`, `confirmation` → `consistent`; `deny` класса в v0.2 не имеет [Q50]. Остаток на начало теста: QA 5, confirmation 3, если не сказано иное.
 
 ## Вход
 
