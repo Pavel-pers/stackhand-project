@@ -1,0 +1,137 @@
+{"code": "IN-2a", "path": "init/node-isolate/inspector/filled/01-srv-1c", "title": "inspector/filled/01 — сервер 1С: всё есть в осмотре и описании, вопросов нет", "kind": "node-isolate", "step": 1}
+{"code": "IN-2a", "path": "init/node-isolate/inspector/filled/02-web-01-unsupported-hv", "title": "inspector/filled/02 — сайт на VPS у хостера: теги, неподдерживаемая платформа провайдера", "kind": "node-isolate", "step": 1}
+{"code": "IN-2b", "path": "init/node-isolate/inspector/clarify/01-path-not-found", "title": "inspector/clarify/01 — путь бэкапа из описания не найден", "kind": "node-isolate", "step": 1}
+{"code": "IN-3", "path": "init/node-isolate/inspector/clarify/04-bad-ssh-refill-form", "title": "inspector/clarify/04 — неверный ssh для сервера: отказ с просьбой заполнить форму заново", "kind": "node-isolate", "step": 1}
+{"code": "IN-2b", "path": "init/node-isolate/inspector/clarify/05-docker-leftovers-web-01", "title": "inspector/clarify/05 — остатки Docker на сайте: тег-кандидат со средней уверенностью", "kind": "node-isolate", "step": 1}
+{"code": "IN-2b", "path": "init/node-isolate/inspector/answer-processing/01-answer-applied", "title": "inspector/answer-processing/01 — ответ пользователя учтён, остальное не изменилось", "kind": "node-isolate", "step": 1}
+{"code": "X-CHK", "path": "init/node-isolate/inspector/checklist/01-1c-handles-by-checklist", "title": "inspector/checklist/01 — чек-лист для 1С: нужные ручки вызваны, поля заполнены из них", "kind": "node-isolate", "step": null}
+{"code": "X-CHK", "path": "init/node-isolate/inspector/checklist/02-web-logs-and-domains", "title": "inspector/checklist/02 — чек-лист для сайта: домены и журналы из ручек, не из описания", "kind": "node-isolate", "step": null}
+{"code": "X-LIM", "path": "init/node-isolate/inspector/limits/01-handles-exhausted", "title": "inspector/limits/01 — лимит ручек осмотра исчерпан", "kind": "node-isolate", "step": null}
+{"code": "IN-2a", "path": "init/node-isolate/curator/summary/01-srv-1c-from-artifact", "title": "curator/summary/01 — название, краткое описание и описания по тегам сервера 1С", "kind": "node-isolate", "step": 2}
+{"code": "X-FIELDS", "path": "init/node-isolate/curator/summary/01-srv-1c-from-artifact", "title": "curator/summary/01 — название, краткое описание и описания по тегам сервера 1С", "kind": "node-isolate", "step": 2}
+{"code": "IN-2a", "path": "init/node-isolate/curator/summary/02-web-01-keeps-link-to-1c", "title": "curator/summary/02 — краткое описание сайта сохраняет связь с 1С и не конфликтует с srv-1c", "kind": "node-isolate", "step": 2}
+{"code": "X-FIELDS", "path": "init/node-isolate/curator/summary/02-web-01-keeps-link-to-1c", "title": "curator/summary/02 — краткое описание сайта сохраняет связь с 1С и не конфликтует с srv-1c", "kind": "node-isolate", "step": 2}
+{"code": "IN-2a", "path": "init/node-isolate/curator/summary/03-chatty-description", "title": "curator/summary/03 — разговорное описание пользователя: оставить роль, убрать лишнее", "kind": "node-isolate", "step": 2}
+{"code": "X-FIELDS", "path": "init/node-isolate/curator/summary/03-chatty-description", "title": "curator/summary/03 — разговорное описание пользователя: оставить роль, убрать лишнее", "kind": "node-isolate", "step": 2}
+{"code": "IN-2a", "path": "init/node-isolate/curator/consistent/01-first-server", "title": "curator/consistent/01 — первый сервер: сравнивать не с чем", "kind": "node-isolate", "step": 2}
+{"code": "IN-1b", "path": "init/node-isolate/curator/consistent/03-cafe-with-address", "title": "curator/consistent/03 — новое кафе с адресом: ложного конфликта нет", "kind": "node-isolate", "step": 3}
+{"code": "IN-1a", "path": "init/node-isolate/curator/conflict/01-cafe-same-as-n", "title": "curator/conflict/01 — сеть кафе: новое кафе описано так же, как остальные", "kind": "node-isolate", "step": 2}
+{"code": "IN-1b", "path": "init/node-isolate/curator/answer-processing/01-cafe-address-applied", "title": "curator/answer-processing/01 — адрес кафе попал в краткое описание", "kind": "node-isolate", "step": 2}
+{"code": "IN-1b", "path": "init/node-isolate/curator/answer-processing/02-cafe-answer-nonsense", "title": "curator/answer-processing/02 — ответ, из которого адреса не извлечь", "kind": "node-isolate", "step": 2}
+{"code": "IN-4", "path": "init/node-isolate/curator/rewrite/01-remarks-at-confirmation", "title": "curator/rewrite/01 — замечания пользователя к краткому описанию и названию на шаге подтверждения", "kind": "node-isolate", "step": 2}
+{"code": "IN-4", "path": "init/node-isolate/curator/rewrite/02-decline-then-qa", "title": "curator/rewrite/02 — отказ от подтверждения без замечаний: Q&A в контексте куратора", "kind": "node-isolate", "step": 2}
+{"code": "IN-4", "path": "init/node-isolate/curator/deny/01-tag-change-requested", "title": "curator/deny/01 — замечание требует смены тегов: явный отказ", "kind": "node-isolate", "step": 2}
+{"code": "IN-4", "path": "init/node-isolate/curator/deny/02-edit-outside-short-desc", "title": "curator/deny/02 — правка вне краткого описания и названия: полное описание, другой сервер, conn-info", "kind": "node-isolate", "step": 2}
+{"code": "X-LIM", "path": "init/node-isolate/curator/limits/01-qa-exhausted", "title": "curator/limits/01 — лимит вопросов QA исчерпан", "kind": "node-isolate", "step": null}
+{"code": "IN-1a", "path": "init/e2e/n-server-cafe/01-new-cafe-question", "title": "init/e2e/n-server-cafe/01 — такт 1: N серверов кафе + ещё одно кафе — куратор спрашивает, чем отличается", "kind": "e2e", "step": null}
+{"code": "IN-1b", "path": "init/e2e/n-server-cafe/02-answer-correct", "title": "init/e2e/n-server-cafe/02 — такт 2: обработка ответа — верный итог на подтверждение", "kind": "e2e", "step": null}
+{"code": "IN-1b", "path": "init/e2e/n-server-cafe/03-confirm-record-probes", "title": "init/e2e/n-server-cafe/03 — такт 3: подтверждение — запись о сервере и маршрутизация по адресу", "kind": "e2e", "step": null}
+{"code": "IN-1b", "path": "init/e2e/n-server-cafe/04-answer-nonsense", "title": "init/e2e/n-server-cafe/04 — такт 2: обработка ответа — невменяемый ответ", "kind": "e2e", "step": null}
+{"code": "IN-1a", "path": "init/e2e/n-server-cafe/05-no-question", "title": "init/e2e/n-server-cafe/05 — такт 1: сервер кафе без вопроса о различиях", "kind": "e2e", "step": null}
+{"code": "IN-1a", "path": "init/e2e/n-server-cafe/06-no-question-confirm-probe", "title": "init/e2e/n-server-cafe/06 — итог: подтверждение без вопросов — запись и маршрут", "kind": "e2e", "step": null}
+{"code": "IN-2a", "path": "init/e2e/1c-site/01-no-question", "title": "init/e2e/1c-site/01 — 1С + сайт: вопросов не потребовалось — качество полей", "kind": "e2e", "step": null}
+{"code": "IN-2a", "path": "init/e2e/1c-site/02-confirm-record-probes", "title": "init/e2e/1c-site/02 — такт 2: подтверждение — запись о сервере и рабочие пробы", "kind": "e2e", "step": null}
+{"code": "IN-2b", "path": "init/e2e/1c-site/03-qa-question", "title": "init/e2e/1c-site/03 — такт 1: 1С + сайт — вопрос инспектора нужен", "kind": "e2e", "step": null}
+{"code": "IN-2b", "path": "init/e2e/1c-site/04-qa-answer", "title": "init/e2e/1c-site/04 — такт 2: обработка ответов инспектором — до карточки", "kind": "e2e", "step": null}
+{"code": "IN-2b", "path": "init/e2e/1c-site/05-confirm-probes", "title": "init/e2e/1c-site/05 — такт 3: подтверждение — ответы дошли до записи и до агента", "kind": "e2e", "step": null}
+{"code": "IN-3", "path": "init/e2e/bad-ssh/01-ssh-port-closed", "title": "init/e2e/bad-ssh/01 — на сервере нет SSH: отказ с просьбой заполнить форму заново", "kind": "e2e", "step": null}
+{"code": "IN-3", "path": "init/e2e/bad-ssh/02-ssh-key-rejected", "title": "init/e2e/bad-ssh/02 — ключ из формы не подходит: отказ с просьбой заполнить форму заново", "kind": "e2e", "step": null}
+{"code": "IN-3", "path": "init/e2e/bad-ssh/03-refill-with-correct-key", "title": "init/e2e/bad-ssh/03 — повторная форма с верным ключом: штатное добавление до карточки", "kind": "e2e", "step": null}
+{"code": "IN-4", "path": "init/e2e/rewrite-short-desc/01-remarks-at-confirmation", "title": "init/e2e/rewrite-short-desc/01 — такт 2: замечания пользователя на карточке — куратор переписывает краткое описание и название", "kind": "e2e", "step": null}
+{"code": "IN-4", "path": "init/e2e/rewrite-short-desc/02-request-outside-borders", "title": "init/e2e/rewrite-short-desc/02 — такт 2: просьба на карточке вне границ куратора — явный отказ", "kind": "e2e", "step": null}
+{"code": "IN-4", "path": "init/e2e/rewrite-short-desc/03-confirm-after-remarks-probe", "title": "init/e2e/rewrite-short-desc/03 — итог: подтверждение переписанной карточки — запись и маршрут по новому названию", "kind": "e2e", "step": null}
+{"code": "MR-8a", "path": "main/node-isolate/orchestrator/answered/01-capabilities", "title": "orchestrator/answered/01 — «что ты умеешь делать?»", "kind": "node-isolate", "step": null}
+{"code": "MR-2a", "path": "main/node-isolate/orchestrator/not-in-scope/01-modification", "title": "orchestrator/not-in-scope/01 — запрос на изменение", "kind": "node-isolate", "step": null}
+{"code": "MR-2b", "path": "main/node-isolate/orchestrator/not-in-scope/02-schedule-and-new-log", "title": "orchestrator/not-in-scope/02 — информация по будильнику и ещё один лог с автосбором", "kind": "node-isolate", "step": null}
+{"code": "MR-2c", "path": "main/node-isolate/orchestrator/not-in-scope/03-too-many-servers", "title": "orchestrator/not-in-scope/03 — запрос относится к слишком большому числу серверов", "kind": "node-isolate", "step": null}
+{"code": "MR-2d", "path": "main/node-isolate/orchestrator/not-in-scope/04-no-suitable-server", "title": "orchestrator/not-in-scope/04 — нет подходящего под запрос сервера", "kind": "node-isolate", "step": null}
+{"code": "MR-4", "path": "main/node-isolate/orchestrator/clarify/01-a-accounting-candidates", "title": "orchestrator/clarify/01 — ситуация A: «сервер бухгалтерии» подходит двум", "kind": "node-isolate", "step": null}
+{"code": "MR-4", "path": "main/node-isolate/orchestrator/clarify/02-a-what-with-server", "title": "orchestrator/clarify/02 — ситуация A: «что с сервером?» подходит всем", "kind": "node-isolate", "step": null}
+{"code": "MR-6", "path": "main/node-isolate/orchestrator/clarify/03-c-connection-timeout", "title": "orchestrator/clarify/03 — ситуация C: сервер не ответил", "kind": "node-isolate", "step": 5}
+{"code": "MR-6", "path": "main/node-isolate/orchestrator/clarify/04-c-ssh-key-rejected", "title": "orchestrator/clarify/04 — ситуация C: сервер не принял ключ", "kind": "node-isolate", "step": 5}
+{"code": "MR-4", "path": "main/node-isolate/orchestrator/clarify/06-answer-processing", "title": "orchestrator/clarify/06 — ответ пользователя на уточнение: продолжение сессии", "kind": "node-isolate", "step": null}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/delegated/01-disk-usage-1c", "title": "orchestrator/delegated/01 — «посмотри заполненность дисков на сервере с 1С»", "kind": "node-isolate", "step": 1}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/delegated/02-price-import-site", "title": "orchestrator/delegated/02 — «прайс на сайте вчерашний — выгрузка из 1С отработала?»", "kind": "node-isolate", "step": 1}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/delegated/03-auth-events-1c", "title": "orchestrator/delegated/03 — «какие авторизации были на сервере с 1С»", "kind": "node-isolate", "step": 1}
+{"code": "MR-1a", "path": "main/node-isolate/orchestrator/delegated/04-cpu-history", "title": "orchestrator/delegated/04 — загрузка за сутки и за час (CPU / GPU)", "kind": "node-isolate", "step": 1}
+{"code": "MR-1b", "path": "main/node-isolate/orchestrator/delegated/05-cpu-now", "title": "orchestrator/delegated/05 — «что сейчас грузит сервер 1С?»", "kind": "node-isolate", "step": 1}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/delegated/06-backup-time-not-from-context", "title": "orchestrator/delegated/06 — «во сколько у нас делается бэкап?» (не из памяти)", "kind": "node-isolate", "step": 1}
+{"code": "MR-7b", "path": "main/node-isolate/orchestrator/delegated/07-fact-check-cpu", "title": "orchestrator/delegated/07 — «сколько сейчас ядер и памяти на сервере 1С?»", "kind": "node-isolate", "step": 1}
+{"code": "MR-8b", "path": "main/node-isolate/orchestrator/delegated/08-capabilities-local", "title": "orchestrator/delegated/08 — «что можно узнать про сервер 1С?»", "kind": "node-isolate", "step": 1}
+{"code": "MR-3", "path": "main/node-isolate/orchestrator/delegated/09-tunnel-question-gw", "title": "orchestrator/delegated/09 — вопрос о туннеле склада уходит шлюзу", "kind": "node-isolate", "step": 1}
+{"code": "MR-5c", "path": "main/node-isolate/orchestrator/delegated/10-redelegate-after-wrong-addressee", "title": "orchestrator/delegated/10 — перевыбор сервера после отказа агента «вопрос не ко мне»", "kind": "node-isolate", "step": 1}
+{"code": "IN-1b", "path": "main/node-isolate/orchestrator/delegated/11-cafe-by-address", "title": "orchestrator/delegated/11 — одинаковые серверы кафе: маршрут по адресу в кратком описании", "kind": "node-isolate", "step": 9}
+{"code": "MR-1c", "path": "main/node-isolate/orchestrator/delegated/12-best-backup-window", "title": "orchestrator/delegated/12 — «когда лучше делать бэкапы на сервере 1С?»", "kind": "node-isolate", "step": 1}
+{"code": "MR-7b", "path": "main/node-isolate/orchestrator/delegated/13-fact-check-tables", "title": "orchestrator/delegated/13 — «какие базы на сервере 1С?»: не из краткого описания тега", "kind": "node-isolate", "step": 1}
+{"code": "X-MULTI", "path": "main/node-isolate/orchestrator/delegated/14-two-servers-sequential", "title": "orchestrator/delegated/14 — запрос по двум серверам: первый из последовательных запусков", "kind": "node-isolate", "step": 1}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/report/01-disk-usage", "title": "orchestrator/report/01 — ответ пользователю по дискам srv-1c", "kind": "node-isolate", "step": 5}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/report/02-price-import", "title": "orchestrator/report/02 — ответ по импорту прайса", "kind": "node-isolate", "step": 5}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/report/03-auth-events", "title": "orchestrator/report/03 — ответ по входам на srv-1c", "kind": "node-isolate", "step": 5}
+{"code": "MR-1a", "path": "main/node-isolate/orchestrator/report/04-cpu-history", "title": "orchestrator/report/04 — ответ по загрузке за сутки", "kind": "node-isolate", "step": 5}
+{"code": "MR-1e", "path": "main/node-isolate/orchestrator/report/05-backup-time", "title": "orchestrator/report/05 — ответ «во сколько бэкап»", "kind": "node-isolate", "step": 5}
+{"code": "MR-7b", "path": "main/node-isolate/orchestrator/report/06-fact-check", "title": "orchestrator/report/06 — факт сейчас, а не память", "kind": "node-isolate", "step": 5}
+{"code": "MR-5a", "path": "main/node-isolate/orchestrator/report/07-no-data-window", "title": "orchestrator/report/07 — нет данных за окно", "kind": "node-isolate", "step": 5}
+{"code": "MR-5b", "path": "main/node-isolate/orchestrator/report/08-no-gpu", "title": "orchestrator/report/08 — на сервере нет видеокарты", "kind": "node-isolate", "step": 5}
+{"code": "MR-3", "path": "main/node-isolate/orchestrator/report/09-no-template-refusal", "title": "orchestrator/report/09 — отказ после эскалации агента «нет ручки»", "kind": "node-isolate", "step": 5}
+{"code": "MR-6b", "path": "main/node-isolate/orchestrator/report/10-template-error", "title": "orchestrator/report/10 — ручка упала: пропал доступ к журналу", "kind": "node-isolate", "step": 5}
+{"code": "MR-8b", "path": "main/node-isolate/orchestrator/report/11-capabilities-local", "title": "orchestrator/report/11 — перечень возможностей по серверу", "kind": "node-isolate", "step": 5}
+{"code": "MR-1c", "path": "main/node-isolate/orchestrator/report/12-best-backup-window", "title": "orchestrator/report/12 — ответ «когда лучше делать бэкапы»", "kind": "node-isolate", "step": 5}
+{"code": "MR-1d", "path": "main/node-isolate/orchestrator/report/13-readability-large-eventlog", "title": "orchestrator/report/13 — читаемость: большой журнал регистрации 1С", "kind": "node-isolate", "step": 5}
+{"code": "MR-1d", "path": "main/node-isolate/orchestrator/report/14-readability-raw-log", "title": "orchestrator/report/14 — читаемость: неструктурируемый сырой лог", "kind": "node-isolate", "step": 5}
+{"code": "MR-1d", "path": "main/node-isolate/orchestrator/report/15-readability-scattered-jobs", "title": "orchestrator/report/15 — читаемость: разрозненные задания планировщика", "kind": "node-isolate", "step": 5}
+{"code": "X-MULTI", "path": "main/node-isolate/orchestrator/report/16-two-servers-composition", "title": "orchestrator/report/16 — ответ по двум серверам из двух запусков", "kind": "node-isolate", "step": 5}
+{"code": "X-LIM", "path": "main/node-isolate/orchestrator/limits/01-delegate-exhausted", "title": "orchestrator/limits/01 — лимит запусков агентов исчерпан", "kind": "node-isolate", "step": null}
+{"code": "X-LIM", "path": "main/node-isolate/orchestrator/limits/02-ask-user-exhausted", "title": "orchestrator/limits/02 — лимит вопросов пользователю исчерпан", "kind": "node-isolate", "step": null}
+{"code": "MR-1e", "path": "main/node-isolate/local/handle-choice/01-disk-usage", "title": "local/handle-choice/01 — заполненность томов и прогноз", "kind": "node-isolate", "step": 2}
+{"code": "MR-1a", "path": "main/node-isolate/local/handle-choice/02-cpu-history", "title": "local/handle-choice/02 — загрузка за сутки и за час", "kind": "node-isolate", "step": 2}
+{"code": "MR-1b", "path": "main/node-isolate/local/handle-choice/03-cpu-now", "title": "local/handle-choice/03 — «что грузит прямо сейчас»", "kind": "node-isolate", "step": 2}
+{"code": "MR-1e", "path": "main/node-isolate/local/handle-choice/04-backup-time", "title": "local/handle-choice/04 — во сколько запускается бэкап", "kind": "node-isolate", "step": 2}
+{"code": "MR-1e", "path": "main/node-isolate/local/handle-choice/05-auth-events", "title": "local/handle-choice/05 — входы на сервер за сутки", "kind": "node-isolate", "step": 2}
+{"code": "MR-7a", "path": "main/node-isolate/local/handle-choice/06-fact-check-not-memo", "title": "local/handle-choice/06 — проверка факта на сервере, а не по описанию", "kind": "node-isolate", "step": 2}
+{"code": "MR-5a", "path": "main/node-isolate/local/handle-choice/07-time-window", "title": "local/handle-choice/07 — окно до установки логгеров", "kind": "node-isolate", "step": 2}
+{"code": "MR-5b", "path": "main/node-isolate/local/handle-choice/08-no-gpu", "title": "local/handle-choice/08 — запрошен GPU, которого нет", "kind": "node-isolate", "step": 2}
+{"code": "MR-1a", "path": "main/node-isolate/local/handle-choice/09-gpu-history-acc-01", "title": "local/handle-choice/09 — загрузка GPU за сутки на хосте с видеокартой", "kind": "node-isolate", "step": 2}
+{"code": "MR-1a", "path": "main/node-isolate/local/handle-choice/10-ignores-wrong-hint", "title": "local/handle-choice/10 — неверная подсказка в запросе: агент опирается на свой контекст", "kind": "node-isolate", "step": 2}
+{"code": "IN-2b", "path": "main/node-isolate/local/handle-choice/11-fresh-backup-record-path", "title": "local/handle-choice/11 — свежесть бэкапа: путь из записи о сервере, а не из привычки", "kind": "node-isolate", "step": 9}
+{"code": "MR-1c", "path": "main/node-isolate/local/handle-choice/12-best-backup-window", "title": "local/handle-choice/12 — «когда лучше делать бэкапы»: составной запрос", "kind": "node-isolate", "step": 2}
+{"code": "MR-7a", "path": "main/node-isolate/local/handle-choice/13-fact-check-users-now", "title": "local/handle-choice/13 — «кто сейчас на сервере»: не из описания", "kind": "node-isolate", "step": 2}
+{"code": "MR-1d", "path": "main/node-isolate/local/handle-choice/14-chain-after-source-unavailable", "title": "local/handle-choice/14 — цепочка: после ошибки источника агент ищет другой путь", "kind": "node-isolate", "step": 2}
+{"code": "MR-1e", "path": "main/node-isolate/local/answer-from-return/01-disk-usage", "title": "local/answer-from-return/01 — ответ оркестратору по сводке: тома", "kind": "node-isolate", "step": 3}
+{"code": "MR-1a", "path": "main/node-isolate/local/answer-from-return/02-cpu-history", "title": "local/answer-from-return/02 — ответ по профилю нагрузки за сутки", "kind": "node-isolate", "step": 3}
+{"code": "MR-1e", "path": "main/node-isolate/local/answer-from-return/03-backup-time", "title": "local/answer-from-return/03 — ответ по заданиям планировщика: время бэкапа", "kind": "node-isolate", "step": 3}
+{"code": "MR-5a", "path": "main/node-isolate/local/answer-from-return/04-no-data-window", "title": "local/answer-from-return/04 — ошибка `no-data-for-period`: данных за окно нет", "kind": "node-isolate", "step": 3}
+{"code": "MR-7a", "path": "main/node-isolate/local/answer-from-return/05-fact-check", "title": "local/answer-from-return/05 — факт из сводки, а не из описания", "kind": "node-isolate", "step": 3}
+{"code": "MR-8b", "path": "main/node-isolate/local/answer-from-return/06-capabilities-list", "title": "local/answer-from-return/06 — перечень возможностей по серверу", "kind": "node-isolate", "step": 3}
+{"code": "MR-7a", "path": "main/node-isolate/local/answer-from-return/08-sessions-now", "title": "local/answer-from-return/08 — текущие сеансы 1С: по сводке, не по описанию", "kind": "node-isolate", "step": 3}
+{"code": "MR-1d", "path": "main/node-isolate/local/answer-from-return/09-eventlog-big", "title": "local/answer-from-return/09 — сводка большого объёма: ответ по итогам, не пересказ", "kind": "node-isolate", "step": 3}
+{"code": "MR-1c", "path": "main/node-isolate/local/answer-from-return/10-best-backup-window", "title": "local/answer-from-return/10 — ответ по двум сводкам: окно для бэкапа", "kind": "node-isolate", "step": 3}
+{"code": "MR-6", "path": "main/node-isolate/local/error-formulation/01-ssh-key-rejected", "title": "local/error-formulation/01 — не подходит ssh-ключ", "kind": "node-isolate", "step": 3}
+{"code": "MR-6b", "path": "main/node-isolate/local/error-formulation/02-log-access-lost", "title": "local/error-formulation/02 — пропал доступ к журналу", "kind": "node-isolate", "step": 3}
+{"code": "MR-6", "path": "main/node-isolate/local/error-formulation/03-connection-timeout", "title": "local/error-formulation/03 — сервер не ответил", "kind": "node-isolate", "step": 3}
+{"code": "MR-3", "path": "main/node-isolate/local/refusal/02-no-template-wireguard", "title": "local/refusal/02 — ручки нет: пиры туннеля на шлюзе", "kind": "node-isolate", "step": 2}
+{"code": "MR-5c", "path": "main/node-isolate/local/refusal/03-wrong-addressee-1c-on-gateway", "title": "local/refusal/03 — не по адресу: сеансы 1С на шлюзе", "kind": "node-isolate", "step": 2}
+{"code": "MR-5c", "path": "main/node-isolate/local/refusal/04-wrong-addressee-docker-on-1c", "title": "local/refusal/04 — не по адресу: контейнеры на сервере 1С", "kind": "node-isolate", "step": 2}
+{"code": "X-LIM", "path": "main/node-isolate/local/limits/01-handle-limit-exhausted", "title": "local/limits/01 — лимит ручек на запуск исчерпан", "kind": "node-isolate", "step": null}
+{"code": "MR-1a", "path": "main/e2e/info/01-cpu-history-day-hour", "title": "main/e2e/info/01 — динамика параметра: загрузка за сутки и за час (CPU / GPU)", "kind": "e2e", "step": null}
+{"code": "MR-1b", "path": "main/e2e/info/02-cpu-now", "title": "main/e2e/info/02 — единовременное значение: что грузит сервер прямо сейчас", "kind": "e2e", "step": null}
+{"code": "MR-1c", "path": "main/e2e/info/03-best-backup-window", "title": "main/e2e/info/03 — комплексный вопрос: «когда лучше делать бэкапы?»", "kind": "e2e", "step": null}
+{"code": "MR-1e", "path": "main/e2e/info/04-backup-time-actual", "title": "main/e2e/info/04 — «во сколько у нас делается бэкап?»", "kind": "e2e", "step": null}
+{"code": "MR-1e", "path": "main/e2e/info/05-disk-usage-1c", "title": "main/e2e/info/05 — диски сервера 1С", "kind": "e2e", "step": null}
+{"code": "MR-1e", "path": "main/e2e/info/06-price-import", "title": "main/e2e/info/06 — импорт прайса из 1С на сайт", "kind": "e2e", "step": null}
+{"code": "MR-1e", "path": "main/e2e/info/07-auth-events-1c", "title": "main/e2e/info/07 — входы на сервер 1С за сутки", "kind": "e2e", "step": null}
+{"code": "MR-1d", "path": "main/e2e/readability/01-large-eventlog", "title": "main/e2e/readability/01 — данные большого объёма: журнал регистрации 1С за день", "kind": "e2e", "step": null}
+{"code": "MR-1d", "path": "main/e2e/readability/02-raw-log-excerpt", "title": "main/e2e/readability/02 — неструктурируемые данные: сырая выборка журнала обращений", "kind": "e2e", "step": null}
+{"code": "MR-1d", "path": "main/e2e/readability/03-scattered-jobs", "title": "main/e2e/readability/03 — разрозненные данные: задания планировщика", "kind": "e2e", "step": null}
+{"code": "MR-2a", "path": "main/e2e/not-in-scope-orch/01-modification", "title": "main/e2e/not-in-scope-orch/01 — запрос на изменение", "kind": "e2e", "step": null}
+{"code": "MR-2c", "path": "main/e2e/not-in-scope-orch/02-too-many-servers", "title": "main/e2e/not-in-scope-orch/02 — запрос относится к слишком большому числу серверов", "kind": "e2e", "step": null}
+{"code": "MR-2d", "path": "main/e2e/not-in-scope-orch/03-no-suitable-server", "title": "main/e2e/not-in-scope-orch/03 — нет подходящего под запрос сервера", "kind": "e2e", "step": null}
+{"code": "MR-3", "path": "main/e2e/not-in-scope-local/01-no-toolkit", "title": "main/e2e/not-in-scope-local/01 — у агента нет тулкита под вопрос", "kind": "e2e", "step": null}
+{"code": "MR-5a", "path": "main/e2e/data-mismatch/01-no-data-for-period", "title": "main/e2e/data-mismatch/01 — нет данных за запрошенный период", "kind": "e2e", "step": null}
+{"code": "MR-5b", "path": "main/e2e/data-mismatch/02-metric-not-logged", "title": "main/e2e/data-mismatch/02 — на сервере не логируется запрошенная метрика (GPU)", "kind": "e2e", "step": null}
+{"code": "MR-6", "path": "main/e2e/access-lost/01-ssh-refused", "title": "main/e2e/access-lost/01 — сервер перестал принимать ключ / не отвечает", "kind": "e2e", "step": null}
+{"code": "MR-6b", "path": "main/e2e/access-lost/02-log-access-lost", "title": "main/e2e/access-lost/02 — ручка упала: пропал доступ к журналу", "kind": "e2e", "step": null}
+{"code": "MR-8b", "path": "main/e2e/what-you-can/01-local-side", "title": "main/e2e/what-you-can/01 — «что можно узнать про сервер 1С?»: знания агента о своих ручках", "kind": "e2e", "step": null}
+{"code": "X-MULTI", "path": "main/e2e/multi-server/01-two-servers", "title": "main/e2e/multi-server/01 — запрос по двум серверам: последовательные запуски", "kind": "e2e", "step": null}
+{"code": "SYS", "path": "system/delete/01-delete-button", "title": "system/delete/01 — кнопка удаления сервера: вся информация о сервере удаляется", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/chat-limit/01-third-answer-closes-chat", "title": "system/chat-limit/01 — третий ответ или отказ закрывает чат", "kind": "system", "step": null}
+{"code": "SYS", "path": "system/infra-failure/01-no-model-no-memory", "title": "system/infra-failure/01 — сбой на стороне системы: нет модели, нет памяти о серверах", "kind": "system", "step": null}

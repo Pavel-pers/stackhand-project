@@ -1,0 +1,730 @@
+[
+  {
+    "code": "MR-1a",
+    "group": "Main-Run 1",
+    "description": "Получение информации — динамика параметра (монитор CPU за последний день)",
+    "e2e": [
+      "main/e2e/info/01-cpu-history-day-hour"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/04-cpu-history",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/02-cpu-history",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/09-gpu-history-acc-01",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/10-ignores-wrong-hint",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/02-cpu-history",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/04-cpu-history",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-1b",
+    "group": "Main-Run 1",
+    "description": "Получение информации — единовременное значение (CPU сейчас)",
+    "e2e": [
+      "main/e2e/info/02-cpu-now"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/05-cpu-now",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/03-cpu-now",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-1c",
+    "group": "Main-Run 1",
+    "description": "Получение информации — комплексный вопрос («когда лучше делать бэкапы»: агент смотрит логи нагрузки и выбирает окно)",
+    "e2e": [
+      "main/e2e/info/03-best-backup-window"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/12-best-backup-window",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/12-best-backup-window",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/10-best-backup-window",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/12-best-backup-window",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-1d",
+    "group": "Main-Run 1",
+    "description": "Читаемость ответа пользователю — не сырые данные тулз, а показательные с комментариями; данные разрозненные, неструктурируемые, большого объёма",
+    "e2e": [
+      "main/e2e/readability/01-large-eventlog",
+      "main/e2e/readability/02-raw-log-excerpt",
+      "main/e2e/readability/03-scattered-jobs"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/handle-choice/14-chain-after-source-unavailable",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/09-eventlog-big",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/13-readability-large-eventlog",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/14-readability-raw-log",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/15-readability-scattered-jobs",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-1e",
+    "group": "Main-Run 1",
+    "description": "Получение информации — другие вопросы по накопленным данным (диски, задание импорта, входы, время бэкапа по планировщику): старые e2e v0.1, в транскрипте пункт 1 назван общо",
+    "e2e": [
+      "main/e2e/info/04-backup-time-actual",
+      "main/e2e/info/05-disk-usage-1c",
+      "main/e2e/info/06-price-import",
+      "main/e2e/info/07-auth-events-1c"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/01-disk-usage-1c",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/delegated/02-price-import-site",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/delegated/03-auth-events-1c",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/delegated/06-backup-time-not-from-context",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/01-disk-usage",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/04-backup-time",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/05-auth-events",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/01-disk-usage",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/03-backup-time",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/01-disk-usage",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/02-price-import",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/03-auth-events",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/05-backup-time",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-2a",
+    "group": "Main-Run 2",
+    "description": "Не в скоупе оркестратора — запрос изменения",
+    "e2e": [
+      "main/e2e/not-in-scope-orch/01-modification"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/not-in-scope/01-modification",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-2b",
+    "group": "Main-Run 2",
+    "description": "Не в скоупе оркестратора — информация по будильнику / ещё один лог с автоматическим сбором (только node-isolate)",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/not-in-scope/02-schedule-and-new-log",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-2c",
+    "group": "Main-Run 2",
+    "description": "Не в скоупе оркестратора — запрос относится к слишком большому числу серверов (> 15)",
+    "e2e": [
+      "main/e2e/not-in-scope-orch/02-too-many-servers"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/not-in-scope/03-too-many-servers",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-2d",
+    "group": "Main-Run 2",
+    "description": "Не в скоупе оркестратора — нет подходящего под запрос сервера",
+    "e2e": [
+      "main/e2e/not-in-scope-orch/03-no-suitable-server"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/not-in-scope/04-no-suitable-server",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-3",
+    "group": "Main-Run 3",
+    "description": "Не в скоупе локального агента — нет тулкита под запрос: агент формирует отказ, оркестратор получает и формулирует пользователю",
+    "e2e": [
+      "main/e2e/not-in-scope-local/01-no-toolkit"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/09-tunnel-question-gw",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/refusal/02-no-template-wireguard",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/09-no-template-refusal",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-4",
+    "group": "Main-Run 4",
+    "description": "Несколько серверов-кандидатов — вопрос с кандидатами (только node-isolate)",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/clarify/01-a-accounting-candidates",
+        "step": null
+      },
+      {
+        "path": "main/node-isolate/orchestrator/clarify/02-a-what-with-server",
+        "step": null
+      },
+      {
+        "path": "main/node-isolate/orchestrator/clarify/06-answer-processing",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-5a",
+    "group": "Main-Run 5",
+    "description": "Несовпадение запрошенных данных — нет данных за запрошенный период",
+    "e2e": [
+      "main/e2e/data-mismatch/01-no-data-for-period"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/handle-choice/07-time-window",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/04-no-data-window",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/07-no-data-window",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-5b",
+    "group": "Main-Run 5",
+    "description": "Несовпадение запрошенных данных — на сервере не логируется запрошенная метрика",
+    "e2e": [
+      "main/e2e/data-mismatch/02-metric-not-logged"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/handle-choice/08-no-gpu",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/08-no-gpu",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-5c",
+    "group": "Main-Run 5",
+    "description": "Неверно выбранный сервер — node-isolate: A) оркестратор получил отказ и перевыбирает; B) агенту дан запрос мимо его скоупа",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/10-redelegate-after-wrong-addressee",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/refusal/03-wrong-addressee-1c-on-gateway",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/refusal/04-wrong-addressee-docker-on-1c",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-6",
+    "group": "Main-Run 6",
+    "description": "Доступ к серверу потерялся — несколько попыток, затем ответ пользователю с возможными причинами через оркестратор",
+    "e2e": [
+      "main/e2e/access-lost/01-ssh-refused"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/error-formulation/01-ssh-key-rejected",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/local/error-formulation/03-connection-timeout",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/clarify/03-c-connection-timeout",
+        "step": 5
+      },
+      {
+        "path": "main/node-isolate/orchestrator/clarify/04-c-ssh-key-rejected",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-6b",
+    "group": "Main-Run 6",
+    "description": "Доступ к источнику данных потерялся (ручка не читает журнал) — путь ошибки «пропал доступ к логу» из метрик [M], в транскрипте не назван; ответ пользователю через оркестратора",
+    "e2e": [
+      "main/e2e/access-lost/02-log-access-lost"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/error-formulation/02-log-access-lost",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/10-template-error",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-7a",
+    "group": "Main-Run 7",
+    "description": "Fact checking — локальный агент проверяет на сервере, а не отвечает по полному описанию (только node-isolate)",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/local/handle-choice/06-fact-check-not-memo",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/13-fact-check-users-now",
+        "step": 2
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/05-fact-check",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/08-sessions-now",
+        "step": 3
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-7b",
+    "group": "Main-Run 7",
+    "description": "Fact checking — оркестратор не отвечает по краткому описанию тега на прямой вопрос о содержимом сервера (только node-isolate)",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/07-fact-check-cpu",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/delegated/13-fact-check-tables",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/06-fact-check",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-8a",
+    "group": "Main-Run 8",
+    "description": "Что умеет модель — вся система (оркестратор; только node-isolate)",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/answered/01-capabilities",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "MR-8b",
+    "group": "Main-Run 8",
+    "description": "Что умеет модель на конкретном сервере — знания локального агента о своих ручках",
+    "e2e": [
+      "main/e2e/what-you-can/01-local-side"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/08-capabilities-local",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/answer-from-return/06-capabilities-list",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/11-capabilities-local",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-1a",
+    "group": "Init 1",
+    "description": "N серверов кафе + ещё один — такт 1: серверы получились неразличимы, R&B — вопрос задан, LLM — корректность вопроса",
+    "e2e": [
+      "init/e2e/n-server-cafe/01-new-cafe-question",
+      "init/e2e/n-server-cafe/05-no-question",
+      "init/e2e/n-server-cafe/06-no-question-confirm-probe"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/curator/conflict/01-cafe-same-as-n",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-1b",
+    "group": "Init 1",
+    "description": "N серверов кафе + ещё один — такт 2: обработка ответа, корректный результат",
+    "e2e": [
+      "init/e2e/n-server-cafe/02-answer-correct",
+      "init/e2e/n-server-cafe/03-confirm-record-probes",
+      "init/e2e/n-server-cafe/04-answer-nonsense"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/curator/answer-processing/01-cafe-address-applied",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/answer-processing/02-cafe-answer-nonsense",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/consistent/03-cafe-with-address",
+        "step": 3
+      },
+      {
+        "path": "main/node-isolate/orchestrator/delegated/11-cafe-by-address",
+        "step": 9
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-2a",
+    "group": "Init 2",
+    "description": "Серверы 1С и сайт — лишние вопросы не заданы (R&B), качество составленной информации о сервере (LLM)",
+    "e2e": [
+      "init/e2e/1c-site/01-no-question",
+      "init/e2e/1c-site/02-confirm-record-probes"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/inspector/filled/01-srv-1c",
+        "step": 1
+      },
+      {
+        "path": "init/node-isolate/inspector/filled/02-web-01-unsupported-hv",
+        "step": 1
+      },
+      {
+        "path": "init/node-isolate/curator/consistent/01-first-server",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/summary/01-srv-1c-from-artifact",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/summary/02-web-01-keeps-link-to-1c",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/summary/03-chatty-description",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-2b",
+    "group": "Init 2",
+    "description": "Серверы 1С и сайт — вопрос задать нужно: такты «вопрос» и «обработка ответа»",
+    "e2e": [
+      "init/e2e/1c-site/03-qa-question",
+      "init/e2e/1c-site/04-qa-answer",
+      "init/e2e/1c-site/05-confirm-probes"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/inspector/answer-processing/01-answer-applied",
+        "step": 1
+      },
+      {
+        "path": "init/node-isolate/inspector/clarify/01-path-not-found",
+        "step": 1
+      },
+      {
+        "path": "init/node-isolate/inspector/clarify/05-docker-leftovers-web-01",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/local/handle-choice/11-fresh-backup-record-path",
+        "step": 9
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-3",
+    "group": "Init 3",
+    "description": "Неверный ssh для сервера — отказ с просьбой заполнить форму заново (conn-info не меняется инспектором и куратором)",
+    "e2e": [
+      "init/e2e/bad-ssh/01-ssh-port-closed",
+      "init/e2e/bad-ssh/02-ssh-key-rejected",
+      "init/e2e/bad-ssh/03-refill-with-correct-key"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/inspector/clarify/04-bad-ssh-refill-form",
+        "step": 1
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "IN-4",
+    "group": "Init 4",
+    "description": "Перезапись краткого описания сервера куратором после возврата инспектора — замечания пользователя; просьбы вне границ — явный отказ",
+    "e2e": [
+      "init/e2e/rewrite-short-desc/01-remarks-at-confirmation",
+      "init/e2e/rewrite-short-desc/02-request-outside-borders",
+      "init/e2e/rewrite-short-desc/03-confirm-after-remarks-probe"
+    ],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/curator/deny/01-tag-change-requested",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/deny/02-edit-outside-short-desc",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/rewrite/01-remarks-at-confirmation",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/rewrite/02-decline-then-qa",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "X-LIM",
+    "group": "Вне плана",
+    "description": "Лимиты тулз [AR-32]: поведение модели при отказе системы на вызов сверх лимита [Q60]",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/curator/limits/01-qa-exhausted",
+        "step": null
+      },
+      {
+        "path": "init/node-isolate/inspector/limits/01-handles-exhausted",
+        "step": null
+      },
+      {
+        "path": "main/node-isolate/local/limits/01-handle-limit-exhausted",
+        "step": null
+      },
+      {
+        "path": "main/node-isolate/orchestrator/limits/01-delegate-exhausted",
+        "step": null
+      },
+      {
+        "path": "main/node-isolate/orchestrator/limits/02-ask-user-exhausted",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "X-MULTI",
+    "group": "Вне плана",
+    "description": "Несколько серверов в одном запросе — последовательные запуски агентов [UC-26], [AR-27]",
+    "e2e": [
+      "main/e2e/multi-server/01-two-servers"
+    ],
+    "node_isolate": [
+      {
+        "path": "main/node-isolate/orchestrator/delegated/14-two-servers-sequential",
+        "step": 1
+      },
+      {
+        "path": "main/node-isolate/orchestrator/report/16-two-servers-composition",
+        "step": 5
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "X-CHK",
+    "group": "Вне плана",
+    "description": "Чек-лист и ручки инспектора — использование проверяется в node-isolate [EV-10], [Q58]",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/inspector/checklist/01-1c-handles-by-checklist",
+        "step": null
+      },
+      {
+        "path": "init/node-isolate/inspector/checklist/02-web-logs-and-domains",
+        "step": null
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "X-FIELDS",
+    "group": "Вне плана",
+    "description": "Поля записи о сервере с лимитами слов [AR-29] — rule-based проверка",
+    "e2e": [],
+    "node_isolate": [
+      {
+        "path": "init/node-isolate/curator/summary/01-srv-1c-from-artifact",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/summary/02-web-01-keeps-link-to-1c",
+        "step": 2
+      },
+      {
+        "path": "init/node-isolate/curator/summary/03-chatty-description",
+        "step": 2
+      }
+    ],
+    "system": []
+  },
+  {
+    "code": "SYS",
+    "group": "Системные тесты",
+    "description": "Не метрики модели — вне eval-сета (удаление сервера [AR-21], закрытие чата по лимиту [UC-28], сбой инфраструктуры системы)",
+    "e2e": [],
+    "node_isolate": [],
+    "system": [
+      "system/delete/01-delete-button",
+      "system/chat-limit/01-third-answer-closes-chat",
+      "system/infra-failure/01-no-model-no-memory"
+    ]
+  }
+]
